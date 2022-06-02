@@ -8,20 +8,25 @@
 #include "Ninja.h"
 #include "Pirate.h"
 using namespace std;
+// variables for storing the player's and the enemy's health
 int playerHealth;
 int enemyHealth = 25;
+// variable for how much damage the enemies do
 int damage;
+// variables for player input
 string actionType;
 string playerSide;
 
 int main()
 {
+    // variables for accessing classes
     Character character;
     
     Ninja ninja;
 
     Pirate pirate;
 
+    // ask the player which side this wish to fight for and their name
     cout << "Will you play as a pirate or a ninja?\n";
     cin >> playerSide;
     if (playerSide == "pirate")
@@ -37,21 +42,24 @@ int main()
         cout << "\n Welcome " + character.name + ", the others are training inside the dojo.\n";
         playerHealth = ninja.health;
     }
-
+    // ask the player which action they wish to do each round
     while (playerHealth > 0) {
         cout << "\nYou are under attack, will you fight or run? \n";
         cin >> actionType;
+        // attack the enemy for 5 damage
         if (actionType == "fight") {
             enemyHealth -= 5;
             cout << "You attack and deal 5 damage \n";
             if (enemyHealth > 0) {
                 cout << "current enemy health:\n";
                 cout << enemyHealth << endl;
+                // have the enemy deal a random amount of damage between 0 and 5
                 cout << "The enemy strikes back!\n";
                 srand(time(0));
                 damage = 1 + (rand() % 5);
                 playerHealth -= damage;
                 cout << damage << endl;
+                // display the player's current health
                 cout << "current health: ";
                 cout << playerHealth << endl;
             }
@@ -73,7 +81,9 @@ int main()
             }
             else if (actionType == "yes")
             {
+                // reset the enemy's health and begin a new battle
                 cout << "You continue the fight\n";
+                enemyHealth = 25;
             }
         }
     }

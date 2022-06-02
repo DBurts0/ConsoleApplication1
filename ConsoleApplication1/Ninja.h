@@ -3,12 +3,12 @@
 using namespace std;
 class Ninja : public Character
 {
+    // 
 public:
     void Attack() {
         cout << "Throwing stars!\n";
     }
-    int damage = 10;
-
+    // access the health variable in the parent class
     Character character;
     int health = character.getHealth();
         
